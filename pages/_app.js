@@ -4,6 +4,7 @@ import App from 'next/app';
 //styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/main.scss';
+import auth0 from '../services/auth0';
 
 
 
@@ -13,16 +14,23 @@ class MyApp extends App {
   // perform automatic static optimization, causing every page in your app to
   // be server-side rendered.
   //
-  // static async getInitialProps(appContext) {
-  //   // calls page's `getInitialProps` and fills `appProps.pageProps`
-  //   const appProps = await App.getInitialProps(appContext);
-  //
-  //   return { ...appProps }
-  // }
+  static async getInitialProps({ Component, router, ctx }) {
+    let pageProps = {};
+    const user = process.browser ? await auth0.clientAuth() : await auth0.serverAuth(ctx.req);
+   
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+
+    const auth = { user, isAuthenticated: !!user };
+  
+    return { pageProps, auth }
+  }
+
 
   render() {
-    const { Component, pageProps } = this.props
-    return <Component {...pageProps} />
+    const { Component, pageProps, auth } = this.props
+    return <Component {...pageProps} auth={auth}/>
   }
 }
 

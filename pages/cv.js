@@ -1,5 +1,7 @@
 import React from 'react';
-import BaseLayout from '../components/layouts/baseLayout'
+import BaseLayout from '../components/layouts/baseLayout';
+import BasePage from '../components/BasePage';
+
 
 
 
@@ -7,8 +9,10 @@ class Cv extends React.Component {
 
   render() {
     return (
-      <BaseLayout>
-        <h1>I am the CV page</h1>
+      <BaseLayout {...this.props.auth}>
+        <BasePage>  
+          <h1>I am the CV page</h1>
+          </BasePage>  
       </BaseLayout>  
     )
   }
