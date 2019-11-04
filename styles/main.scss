@@ -6,6 +6,13 @@
 //HEADER components
 @import './shared/header';
 
+//COLORS
+@import './shared/colors';
+
+//PORTFOLIOS
+@import './portfolios';
+
+
 html,
 body {
   height: 100%;
@@ -25,11 +32,39 @@ body {
   position: absolute;
 }
 
-.base-page {
-  padding-top: 150px;
-  color: white;
-}
-
 .clickable {
   cursor: pointer;
+}
+
+// --------- BASE PAGE -------------
+
+.base-page {
+  padding-top: 150px;
+  color: black;
+  background-color: #ecedee;
+  min-height: 100vh;
+
+  .page-header {
+    .page-header-title {
+      font-weight: 700;
+      color: black;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// --------- BASE PAGE -------------
+
+// --------- DEFAULT HEADER -------------
+.port-navbar.port-nav-base.port-nav-default {
+  padding: 30px;
+  background-color: $secondary !important;
+}
+
+// --------- DEFAULT HEADER -------------
+
+.error {
+  font-weight: 700;
+  color: red;
 }
