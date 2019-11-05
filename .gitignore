@@ -25,5 +25,6 @@ yarn-debug.log*
 yarn-error.log*
 /.next
 
+/server/config/dev.js
 
-mongodb+srv://alanbutcher:alanbutcher@portfolio-guf0j.mongodb.net/test?retryWrites=true&w=majority
+

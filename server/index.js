@@ -7,9 +7,16 @@ const mongoose = require('mongoose');
 //SERVICE
 const authService = require('./services/auth');
 
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = routes.getRequestHandler(app)
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = routes.getRequestHandler(app);
+const config = require('./config');
+
+const Book = require('./models/book');
+const bodyParser = require('body-parser');
+
+const bookRoutes = require('./routes/book');
+const portfolioRoutes = require('./routes/portfolio');
 
 const secretData = [
   {
@@ -22,7 +29,7 @@ const secretData = [
   }
 ]
 
-mongoose.connect('mongodb+srv://alanbutcher:alanbutcher@portfolio-guf0j.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect(config.DB_URI,
   { useNewUrlParser: true })
   .then(() => console.log('Database Connected'))
   .catch(err => console.error(err))
@@ -30,6 +37,13 @@ mongoose.connect('mongodb+srv://alanbutcher:alanbutcher@portfolio-guf0j.mongodb.
 app.prepare().then(() => {
 
   const server = express();
+  server.use(bodyParser.json());
+
+  server.use('/api/v1/books', bookRoutes);
+  server.use('/api/v1/portfolios', portfolioRoutes);
+
+
+
 
   server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
     return res.json(secretData)
