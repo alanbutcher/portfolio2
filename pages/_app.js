@@ -3,10 +3,10 @@ import App from 'next/app';
 
 //styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/main.scss';
+import '../styles/shared/main.scss';
 import auth0 from '../services/auth0';
 
-
+const namespace = 'http://localhost:3000';
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -22,7 +22,8 @@ class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx)
     }
 
-    const auth = { user, isAuthenticated: !!user };
+    const isSiteOwner = user && user[namespace + '/role'] === 'siteOwner'; 
+    const auth = { user, isAuthenticated: !!user, isSiteOwner };
   
     return { pageProps, auth }
   }

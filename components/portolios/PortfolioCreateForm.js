@@ -1,7 +1,7 @@
 // Render Prop
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button } from 'reactstrap';
+import { Button, Alert } from 'reactstrap';
 import PortInput from '../../components/form/PortInput';
 
 
@@ -25,13 +25,13 @@ const INITIAL_VALUES = {
   description: ''
 }
 
-const PortfolioCreateForm = (props) => (
+const PortfolioCreateForm = ({initialValues, onSubmit, error}) => (
   <div>
     <Formik
-      initialValues={INITIAL_VALUES}
+      initialValues={initialValues}
       validate={validateInputs}
 
-      onSubmit={props.onSubmit}
+      onSubmit={onSubmit}
     >
       {({ isSubmitting }) => (
         <Form>
@@ -50,6 +50,13 @@ const PortfolioCreateForm = (props) => (
             name="description"
             label="Description"
             component={PortInput} />
+          
+          {
+              error &&
+            <Alert color="danger">
+              {error}
+            </Alert>  
+          }
 
           <Button color="success" size="lg" type="submit" disabled={isSubmitting}>
             Create

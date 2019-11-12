@@ -9,15 +9,37 @@ class Home extends React.Component {
 
   constructor(props) {
     super(props);
-    this.roles = ['Full Stack Developer', 'JavaScript, React, Node, Express, MongoDB, C#', 'MBA student: (graduating spring 2020!)', 'SCRUM, agile development, product development experience']
+
+    this.state = {
+      isFlipping: false
+    }
+
+    this.roles = ['Full Stack Developer', 'JavaScript, React, Vue', 'Node, Express, MongoDB', 'Masters of Business Administration', 'Agile Methodology', 'SCRUM', 'Product Development']
+  }
+
+  componentDidMount() {
+    this.animateCard()
+  }
+
+  componentWillUnmount() {
+    this.cardAnimationInterval && clearInterval(this.cardAnimationInterval)
+  }
+
+  animateCard() {
+    this.cardAnimationInterval = setInterval(() => {
+      this.setState({
+        isFlipping: !this.state.isFlipping
+      })
+    }, 5000)
   }
 
 
   render() {
-  const { isAuthenticated, user } = this.props.auth
+    const { isAuthenticated, user } = this.props.auth
+  const { isFlipping } = this.state
 
     return (
-      <BaseLayout className="cover" {...this.props.auth} headerType="index">
+      <BaseLayout className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`} {...this.props.auth} headerType="index">
       <div className="main-section">
         <div className="background-image">
           <img src="/static/images/background-index.png" />
@@ -27,19 +49,32 @@ class Home extends React.Component {
           <Row>
             <Col md="6">
               <div className="hero-section">
-                <div className={`flipper`}>
-                  <div className="back">
+                <div className={`flipper ${isFlipping ? 'isFlipping' : ''}`}>
+                  <div className="front">
                     <div className="hero-section-content">
                       <h2> Full Stack Web Developer </h2>
                       <div className="hero-section-content-intro">
-                        Have a look at my portfolio and job history.
+                        Tech lover - Self taught developer
                 </div>
                     </div>
                     <img className="image" src="/static/images/section-1.png" />
                     <div className="shadow-custom">
                       <div className="shadow-inner"> </div>
                     </div>
-                  </div>
+                    </div>
+                    <div className="back">
+                      <div className="hero-section-content">
+                        <h2> MBA Student at BSU</h2>
+                        <div className="hero-section-content-intro">
+                          3.9 GPA - Graduating Spring 2020
+                </div>
+                      </div>
+                      <img className="image" src="/static/images/section-2.png" />
+                      <div className="shadow-custom shadow-custom-2">
+                        <div className="shadow-inner"> </div>
+                      </div>
+                    </div>
+                   
                 </div>
               </div>
             </Col>

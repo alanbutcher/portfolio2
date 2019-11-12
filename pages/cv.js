@@ -11,7 +11,7 @@ class Cv extends React.Component {
     return (
       <BaseLayout {...this.props.auth}>
         <BasePage>  
-          <h1>I am the CV page</h1>
+          <h1>I am the Contact page</h1>
           </BasePage>  
       </BaseLayout>  
     )

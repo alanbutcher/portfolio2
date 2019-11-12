@@ -26,16 +26,28 @@
       text-transform: uppercase;
 
       &.active {
-        color: #dba919;
+        color: #FFC984;
       }
 
       &:hover,
       &:focus {
-        color: #dba919;
+        color: #FFC984;
       }
     }
   }
 }
+
+// #dba919
+
+.bg-transparent.menu-open {
+  background-color: #FFC984 !important;
+}
+
+.bg-transparent.menu-close {
+  transition: 1s;
+}
+
+
 
 // // --------- DEFAULT HEADER -------------
 // .port-navbar.port-nav-base.port-nav-default {

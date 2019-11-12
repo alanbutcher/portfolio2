@@ -1,0 +1,85 @@
+.about-page {
+  .left-side {
+    margin-top: -4vh;
+
+    color: black;
+    text-align: left;
+  }
+
+  .fadein {
+    opacity: 0;
+
+    -webkit-animation: fadein 2s;
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s;
+    /* Firefox < 16 */
+    -ms-animation: fadein 2s;
+    /* Internet Explorer */
+    -o-animation: fadein 2s;
+    /* Opera < 12.1 */
+    animation: fadein 2s;
+
+    -webkit-animation-fill-mode: forwards;
+    /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+    -moz-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+
+  .title {
+    -webkit-animation-delay: 0.7s;
+    -moz-animation-delay: 0.7s;
+    animation-delay: 0.7s;
+    font-size: 42px;
+    font-weight: bold;
+    color: #FFA531;
+    padding-top: 10vh;
+  }
+
+  .subtitle {
+    -webkit-animation-delay: 1.7s;
+    -moz-animation-delay: 1.7s;
+    animation-delay: 1.7s;
+    font-size: 33px;
+    padding-bottom: 2vh;
+  }
+
+  .subsubTitle {
+    -webkit-animation-delay: 2.7s;
+    -moz-animation-delay: 2.7s;
+    animation-delay: 2.7s;
+    font-size: 18px;
+  }
+
+  .aboutText {
+    -webkit-animation-delay: 3.7s;
+    -moz-animation-delay: 3.7s;
+    animation-delay: 3.7s;
+  }
+
+  .profile-picture {
+    -webkit-animation-delay: 4.7s;
+    -moz-animation-delay: 4.7s;
+    animation-delay: 4.7s;
+    padding-top: vh;
+    width: 80%;
+    box-shadow: -17px 13px 13px rgba(0, 0, 0, 0.09);
+    box-shadow: -17px 13px 41px rgba(44, 62, 80, 0.3);
+    box-shadow: -17px 13px 41px rgba(44, 62, 80, 0.6);
+    border: .2px solid rgb(46, 131, 189);
+    border-radius: 10%;
+
+  }
+
+
+
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
